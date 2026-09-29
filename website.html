@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>StudySphere</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#080b18;
+    color:white;
+}
+
+/* NAVBAR */
+
+nav{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 7%;
+    background:rgba(8,11,24,.85);
+    backdrop-filter:blur(15px);
+    border-bottom:1px solid rgba(255,255,255,.1);
+}
+
+.logo{
+    font-size:25px;
+    font-weight:bold;
+    color:#9b8cff;
+}
+
+.links{
+    display:flex;
+    gap:25px;
+}
+
+.links a{
+    color:#ddd;
+    text-decoration:none;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.links a:hover{
+    color:#9b8cff;
+}
+
+/* HERO */
+
+.hero{
+    min-height:650px;
+    padding:90px 8%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:50px;
+    background:
+    radial-gradient(circle at 80% 20%,#4533a8 0,transparent 30%),
+    radial-gradient(circle at 10% 80%,#182c70 0,transparent 30%),
+    #080b18;
+}
+
+.hero-content{
+    max-width:650px;
+}
+
+.badge{
+    display:inline-block;
+    padding:9px 16px;
+    border:1px solid #7567e8;
+    border-radius:30px;
+    color:#b9b0ff;
+    margin-bottom:20px;
+    font-size:13px;
+}
+
+.hero h1{
+    font-size:68px;
+    line-height:1.05;
+    margin-bottom:25px;
+}
+
+.hero h1 span{
+    color:#9b8cff;
+}
+
+.hero p{
+    color:#a9adbf;
+    font-size:18px;
+    line-height:1.7;
+    max-width:550px;
+}
+
+.hero-buttons{
+    margin-top:30px;
+}
+
+.btn{
+    display:inline-block;
+    padding:15px 25px;
+    border-radius:12px;
+    background:#7567e8;
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+    margin-right:10px;
+    transition:.3s;
+}
+
+.btn:hover{
+    transform:translateY(-4px);
+    box-shadow:0 10px 30px rgba(117,103,232,.4);
+}
+
+.btn-outline{
+    background:transparent;
+    border:1px solid #555b75;
+}
+
+/* FLOATING CARD */
+
+.dashboard-card{
+    width:360px;
+    padding:30px;
+    border-radius:25px;
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.15);
+    backdrop-filter:blur(15px);
+    box-shadow:0 25px 60px rgba(0,0,0,.4);
+    animation:float 4s ease-in-out infinite;
+}
+
+@keyframes float{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-15px);}
+}
+
+.dashboard-card h2{
+    margin-bottom:20px;
+}
+
+.stat{
+    background:rgba(255,255,255,.07);
+    padding:18px;
+    border-radius:15px;
+    margin:12px 0;
+    display:flex;
+    justify-content:space-between;
+}
+
+.stat span{
+    color:#9b8cff;
+    font-weight:bold;
+}
+
+/* GENERAL */
+
+section{
+    padding:90px 8%;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:50px;
+}
+
+.section-title .small{
+    color:#9b8cff;
+    letter-spacing:3px;
+    font-size:12px;
+    font-weight:bold;
+}
+
+.section-title h2{
+    font-size:42px;
+    margin:12px 0;
+}
+
+.section-title p{
+    color:#9297aa;
+}
+
+/* FEATURES */
+
+.features{
+    background:#0c1020;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+}
+
+.card{
+    padding:30px 22px;
+    border-radius:20px;
+    background:linear-gradient(145deg,#151a30,#0d1121);
+    border:1px solid #242942;
+    transition:.35s;
+}
+
+.card:hover{
+    transform:translateY(-10px);
+    border-color:#7567e8;
+}
+
+.icon{
+    font-size:38px;
+    margin-bottom:20px;
+}
+
+.card h3{
+    margin-bottom:10px;
+}
+
+.card p{
+    color:#858a9e;
+    line-height:1.5;
+}
+
+/* SUBJECTS */
+
+.subject-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:25px;
+    max-width:1000px;
+    margin:auto;
+}
+
+.subject{
+    padding:28px;
+    border-radius:20px;
+    background:rgba(255,255,255,.05);
+    border:1px solid #242942;
+    transition:.3s;
+}
+
+.subject:hover{
+    transform:scale(1.02);
+    border-color:#7567e8;
+}
+
+.subject-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.subject-icon{
+    font-size:35px;
+}
+
+.percent{
+    color:#9b8cff;
+    font-weight:bold;
+}
+
+.subject p{
+    color:#858a9e;
+    margin:12px 0 20px;
+}
+
+.progress{
+    height:9px;
+    background:#20253a;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.progress div{
+    height:100%;
+    background:linear-gradient(90deg,#7567e8,#b49cff);
+}
+
+/* PLANNER */
+
+.planner{
+    background:#0c1020;
+}
+
+.schedule{
+    max-width:800px;
+    margin:auto;
+}
+
+.task{
+    display:flex;
+    align-items:center;
+    gap:20px;
+    padding:20px;
+    margin:14px 0;
+    border-radius:18px;
+    background:#151a30;
+    border:1px solid #252a42;
+    transition:.3s;
+}
+
+.task:hover{
+    transform:translateX(8px);
+    border-color:#7567e8;
+}
+
+.time{
+    color:#9b8cff;
+    font-weight:bold;
+    min-width:80px;
+}
+
+.task-content{
+    flex:1;
+}
+
+.task-content p{
+    color:#858a9e;
+    margin-top:5px;
+}
+
+.task-icon{
+    font-size:28px;
+}
+
+/* TIMER */
+
+.timer-section{
+    text-align:center;
+}
+
+.timer-box{
+    max-width:550px;
+    margin:auto;
+    padding:50px;
+    border-radius:30px;
+    background:linear-gradient(145deg,#171c35,#0e1224);
+    border:1px solid #2c3150;
+    box-shadow:0 20px 60px rgba(0,0,0,.3);
+}
+
+#clock{
+    font-size:85px;
+    font-weight:bold;
+    color:#9b8cff;
+    margin-bottom:30px;
+}
+
+.timer-box button{
+    padding:13px 22px;
+    margin:5px;
+    border:0;
+    border-radius:10px;
+    background:#7567e8;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.timer-box button:hover{
+    transform:translateY(-3px);
+}
+
+/* TIPS */
+
+.tips{
+    background:#0c1020;
+}
+
+.tips-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+}
+
+.tip{
+    padding:28px;
+    border-radius:20px;
+    background:#151a30;
+    border:1px solid #252a42;
+}
+
+.tip span{
+    font-size:35px;
+}
+
+.tip h3{
+    margin:15px 0 10px;
+}
+
+.tip p{
+    color:#858a9e;
+    line-height:1.6;
+}
+
+/* FOOTER */
+
+footer{
+    padding:30px;
+    text-align:center;
+    background:#050711;
+    color:#777c90;
+}
+
+footer strong{
+    color:#9b8cff;
+}
+
+/* MOBILE */
+
+@media(max-width:850px){
+
+    nav{
+        flex-direction:column;
+        gap:15px;
+    }
+
+    .links{
+        gap:12px;
+        flex-wrap:wrap;
+        justify-content:center;
+    }
+
+    .hero{
+        flex-direction:column;
+        text-align:center;
+    }
+
+    .hero h1{
+        font-size:48px;
+    }
+
+    .dashboard-card{
+        width:100%;
+        max-width:380px;
+    }
+
+    .cards{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .subject-grid,
+    .tips-grid{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:500px){
+
+    .cards{
+        grid-template-columns:1fr;
+    }
+
+    .hero h1{
+        font-size:40px;
+    }
+
+    #clock{
+        font-size:60px;
+    }
+
+    section{
+        padding:65px 5%;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+
+<nav>
+
+    <div class="logo">
+        StudySphere ✦
+    </div>
+
+    <div class="links">
+        <a href="#home">Home</a>
+        <a href="#subjects">Subjects</a>
+        <a href="#planner">Planner</a>
+        <a href="#timer">Timer</a>
+        <a href="#tips">Tips</a>
+    </div>
+
+</nav>
+
+
+<!-- HOME -->
+
+<section class="hero" id="home">
+
+    <div class="hero-content">
+
+        <div class="badge">
+            ✦ YOUR PERSONAL STUDY SPACE
+        </div>
+
+        <h1>
+            Turn your goals<br>
+            into <span>progress.</span>
+        </h1>
+
+        <p>
+            StudySphere helps students organize subjects,
+            plan their day, focus better and build productive
+            study habits — all in one place.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="#planner" class="btn">
+                Start Planning →
+            </a>
+
+            <a href="#subjects" class="btn btn-outline">
+                Explore Subjects
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="dashboard-card">
+
+        <h2>📊 Today's Overview</h2>
+
+        <div class="stat">
+            <span>📚 Subjects</span>
+            <strong>4</strong>
+        </div>
+
+        <div class="stat">
+            <span>✅ Tasks</span>
+            <strong>8</strong>
+        </div>
+
+        <div class="stat">
+            <span>⏱️ Focus Goal</span>
+            <strong>25 min</strong>
+        </div>
+
+        <div class="stat">
+            <span>🔥 Streak</span>
+            <strong>7 days</strong>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FEATURES -->
+
+<section class="features">
+
+    <div class="section-title">
+
+        <div class="small">WHAT YOU GET</div>
+
+        <h2>Everything in One Place</h2>
+
+        <p>
+            Tools designed to make your study routine easier.
+        </p>
+
+    </div>
+
+
+    <div class="cards">
+
+        <div class="card">
+            <div class="icon">📚</div>
+            <h3>Smart Subjects</h3>
+            <p>
+                Keep track of your learning progress.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="icon">📅</div>
+            <h3>Daily Planner</h3>
+            <p>
+                Organize your study schedule.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="icon">⏱️</div>
+            <h3>Focus Timer</h3>
+            <p>
+                Use focused sessions to study effectively.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="icon">💡</div>
+            <h3>Study Tips</h3>
+            <p>
+                Learn simple habits for better productivity.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- SUBJECTS -->
+
+<section id="subjects">
+
+    <div class="section-title">
+
+        <div class="small">YOUR LEARNING</div>
+
+        <h2>Subjects 📚</h2>
+
+        <p>
+            Monitor your progress across different subjects.
+        </p>
+
+    </div>
+
+
+    <div class="subject-grid">
+
+        <div class="subject">
+
+            <div class="subject-top">
+
+                <div class="subject-icon">💻</div>
+
+                <div class="percent">70%</div>
+
+            </div>
+
+            <h2>Programming</h2>
+
+            <p>C++, HTML, CSS & problem solving.</p>
+
+            <div class="progress">
+                <div style="width:70%"></div>
+            </div>
+
+        </div>
+
+
+        <div class="subject">
+
+            <div class="subject-top">
+
+                <div class="subject-icon">📐</div>
+
+                <div class="percent">60%</div>
+
+            </div>
+
+            <h2>Mathematics</h2>
+
+            <p>Calculus, algebra & applications.</p>
+
+            <div class="progress">
+                <div style="width:60%"></div>
+            </div>
+
+        </div>
+
+
+        <div class="subject">
+
+            <div class="subject-top">
+
+                <div class="subject-icon">⚡</div>
+
+                <div class="percent">55%</div>
+
+            </div>
+
+            <h2>Physics</h2>
+
+            <p>Concepts, formulas & experiments.</p>
+
+            <div class="progress">
+                <div style="width:55%"></div>
+            </div>
+
+        </div>
+
+
+        <div class="subject">
+
+            <div class="subject-top">
+
+                <div class="subject-icon">📝</div>
+
+                <div class="percent">75%</div>
+
+            </div>
+
+            <h2>Communication</h2>
+
+            <p>Speaking, writing & presentations.</p>
+
+            <div class="progress">
+                <div style="width:75%"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- PLANNER -->
+
+<section class="planner" id="planner">
+
+    <div class="section-title">
+
+        <div class="small">PLAN YOUR DAY</div>
+
+        <h2>Today's Planner ✅</h2>
+
+        <p>
+            A simple routine to keep you on track.
+        </p>
+
+    </div>
+
+
+    <div class="schedule">
+
+        <div class="task">
+
+            <div class="time">08:00 AM</div>
+
+            <div class="task-content">
+
+                <h3>Mathematics</h3>
+
+                <p>Practice calculus questions.</p>
+
+            </div>
+
+            <div class="task-icon">📐</div>
+
+        </div>
+
+
+        <div class="task">
+
+            <div class="time">11:00 AM</div>
+
+            <div class="task-content">
+
+                <h3>Programming</h3>
+
+                <p>Practice C++ problems.</p>
+
+            </div>
+
+            <div class="task-icon">💻</div>
+
+        </div>
+
+
+        <div class="task">
+
+            <div class="time">03:00 PM</div>
+
+            <div class="task-content">
+
+                <h3>Physics</h3>
+
+                <p>Revise important concepts.</p>
+
+            </div>
+
+            <div class="task-icon">⚡</div>
+
+        </div>
+
+
+        <div class="task">
+
+            <div class="time">07:00 PM</div>
+
+            <div class="task-content">
+
+                <h3>Revision</h3>
+
+                <p>Review today's topics.</p>
+
+            </div>
+
+            <div class="task-icon">📖</div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- TIMER -->
+
+<section id="timer">
+
+    <div class="section-title">
+
+        <div class="small">FOCUS MODE</div>
+
+        <h2>Study Timer ⏱️</h2>
+
+        <p>
+            Focus for 25 minutes and take a short break.
+        </p>
+
+    </div>
+
+
+    <div class="timer-box">
+
+        <div id="clock">
+            25:00
+        </div>
+
+        <button onclick="startTimer()">
+            ▶ Start
+        </button>
+
+        <button onclick="pauseTimer()">
+            ❚❚ Pause
+        </button>
+
+        <button onclick="resetTimer()">
+            ↻ Reset
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- TIPS -->
+
+<section class="tips" id="tips">
+
+    <div class="section-title">
+
+        <div class="small">STUDY SMART</div>
+
+        <h2>Productivity Tips 💡</h2>
+
+        <p>
+            Small habits can make a big difference.
+        </p>
+
+    </div>
+
+
+    <div class="tips-grid">
+
+        <div class="tip">
+
+            <span>🎯</span>
+
+            <h3>Set Small Goals</h3>
+
+            <p>
+                Break large topics into smaller,
+                achievable tasks.
+            </p>
+
+        </div>
+
+
+        <div class="tip">
+
+            <span>📵</span>
+
+            <h3>Remove Distractions</h3>
+
+            <p>
+                Keep unnecessary notifications
+                away while studying.
+            </p>
+
+        </div>
+
+
+        <div class="tip">
+
+            <span>🧠</span>
+
+            <h3>Active Recall</h3>
+
+            <p>
+                Test yourself instead of only
+                rereading your notes.
+            </p>
+
+        </div>
+
+
+        <div class="tip">
+
+            <span>☕</span>
+
+            <h3>Take Breaks</h3>
+
+            <p>
+                Short breaks can help you
+                maintain your focus.
+            </p>
+
+        </div>
+
+
+        <div class="tip">
+
+            <span>😴</span>
+
+            <h3>Sleep Well</h3>
+
+            <p>
+                Give your brain enough time
+                to rest and recover.
+            </p>
+
+        </div>
+
+
+        <div class="tip">
+
+            <span>🔥</span>
+
+            <h3>Stay Consistent</h3>
+
+            <p>
+                Regular progress matters more
+                than occasional long sessions.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<footer>
+
+    © 2026 <strong>StudySphere</strong>
+    | Study Better. Grow Every Day. 📚
+
+</footer>
+
+
+<script>
+
+let seconds = 1500;
+let timerInterval;
+
+function showTime(){
+
+    let minutes = Math.floor(seconds / 60);
+
+    let remaining = seconds % 60;
+
+    document.getElementById("clock").innerText =
+        String(minutes).padStart(2,"0")
+        + ":" +
+        String(remaining).padStart(2,"0");
+
+}
+
+function startTimer(){
+
+    clearInterval(timerInterval);
+
+    timerInterval = setInterval(function(){
+
+        if(seconds > 0){
+
+            seconds--;
+
+            showTime();
+
+        }
+
+    },1000);
+
+}
+
+function pauseTimer(){
+
+    clearInterval(timerInterval);
+
+}
+
+function resetTimer(){
+
+    clearInterval(timerInterval);
+
+    seconds = 1500;
+
+    showTime();
+
+}
+
+</script>
+
+</body>
+</html>
